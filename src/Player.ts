@@ -15,8 +15,6 @@ export default class Player implements Drawable {
   width: 64;
 
   draw() {
-    console.log(this.y);
-
     this.context.drawImage(
       this.sprite,
       this.x,
