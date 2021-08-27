@@ -2,7 +2,7 @@ import Fruit from "./Fruit";
 import Game from "../Game";
 
 export default class Watermelon extends Fruit{
-  points: 20;
+  points: number;
   height: number;
   width: number;
 
@@ -18,5 +18,6 @@ export default class Watermelon extends Fruit{
     super(game, sprite, geometry);
     this.width = width;
     this.height = height;
+    this.points = 20;
   }
 }

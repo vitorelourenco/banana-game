@@ -25,8 +25,8 @@ export default class Game {
     this.lastTickTime = Date.now();
   }
 
-  increaseScore(amount: number) {
-    this.score += amount;
+  increaseScore(game: Game, amount: number) {
+    game.score = game.score + amount;
   }
 
   resetPlayer() {
@@ -90,12 +90,14 @@ export default class Game {
 
   renderGame() {
     this.clearScreen();
+    this.updateScore();
     this.player.draw();
     this.drawables.forEach((d) => d.draw());
     this.drawBaseLine();
   }
 
   updateState() {
+    console.log(this.score);
     if (Date.now() - this.lastDropTime > 1500){
       if(Math.random() < 0.8){
         this.spawnFruit();
@@ -104,7 +106,6 @@ export default class Game {
       }
       this.lastDropTime = Date.now();
     }
-    this.updateScore();
     this.player.updateState();
     this.drawables.forEach((d) => d.updateState(this));
   }
