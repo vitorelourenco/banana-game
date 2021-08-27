@@ -13,14 +13,37 @@ export default class Game {
   lastDropTime: number;
   scoreBoard: HTMLElement;
   keepPlaying: boolean;
+  lives: number;
 
   start() {
     this.enablePlaying();
     this.resetLastTick();
+    this.resetLives();
     this.clearDrawables();
     this.resetPlayer();
     this.resetScore();
     this.requestFrames();
+  }
+
+  resetLives(){
+    this.lives = 4;
+    const domLives = document.querySelectorAll(".life-points");
+    domLives.forEach((life:HTMLImageElement)=>{
+      life.src = "sprites/heart.png";
+    });
+  }
+
+  dropLife(game:Game){
+    console.log(game.lives);
+    game.lives -= 1;
+    const domLives = document.querySelectorAll(".life-points");
+    for(let i = game.lives ; i>=0; i--){
+      if(domLives[i].getAttribute("src") === "sprites/heart.png"){
+        domLives[i].setAttribute("src", "sprites/heart-empty.png");
+        break;
+      }
+    }
+    if(game.lives === 0) game.endGame();
   }
 
   resetLastTick(){
@@ -99,7 +122,6 @@ export default class Game {
   }
 
   updateState() {
-    console.log(this.score);
     if (Date.now() - this.lastDropTime > 1500){
       if(Math.random() < 0.8){
         this.spawnFruit();
