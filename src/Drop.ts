@@ -26,7 +26,7 @@ export default abstract class Drop implements Drawable {
   }
 
   checkOffBounds(){
-    return this.dropHeight === this.y;
+    return this.dropHeight < this.y;
   }
   
   abstract updateState(): void;
