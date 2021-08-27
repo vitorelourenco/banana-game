@@ -47,7 +47,7 @@ export default class Player implements Drawable {
   updateState() {
     const futureX = this.x + this.speed;
 
-    if (futureX < this.context.canvas.width - 66 && futureX > 0) {
+    if (futureX < this.context.canvas.width - this.width - 2 && futureX > 0) {
       this.x = futureX;
     }
     if (this.lastRequested === 0 && this.leftRequested) {

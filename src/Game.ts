@@ -92,6 +92,7 @@ export default class Game {
     this.clearScreen();
     this.player.draw();
     this.drawables.forEach((d) => d.draw());
+    this.drawBaseLine();
   }
 
   updateState() {
@@ -126,6 +127,15 @@ export default class Game {
 
   deleteDrawable(drawable: Drawable) {
     this.drawables = this.drawables.filter((d) => d !== drawable);
+  }
+
+  drawBaseLine(){
+    const ctx = this.context;
+    ctx.beginPath();
+    ctx.moveTo(5, 730);
+    ctx.lineTo(370, 730);
+    ctx.strokeStyle = "#FFFFFF";
+    ctx.stroke();
   }
 
   constructor(canvas: HTMLCanvasElement) {
