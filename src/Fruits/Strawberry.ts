@@ -2,7 +2,7 @@ import Game from "../Game";
 import Fruit from "./Fruit";
 
 export default class Strawberry extends Fruit{
-  points: 30;
+  points: number;
   height: number;
   width: number;
 
@@ -18,5 +18,6 @@ export default class Strawberry extends Fruit{
     super(game, sprite, position);
     this.width = width;
     this.height = height;
+    this.points = 30;
   }
 }

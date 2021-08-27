@@ -5,11 +5,11 @@ export default abstract class Fruit extends Drop {
   abstract points: number;
 
   checkCollision: Function;
-  incrementer: Function;
+  addToScore: Function;
 
-  addToScore() {
-    this.incrementer(this.points);
-  }
+  // addToScore() {
+  //   this.incrementer(this.points);
+  // }
 
   updateState() {
     const hasCollided = this.checkCollision();
@@ -17,6 +17,8 @@ export default abstract class Fruit extends Drop {
       this.eject(this);
     }
     if (hasCollided) {
+      this.eject(this);
+      this.addToScore();
     } else {
       this.y += this.speed;
     }
@@ -29,7 +31,7 @@ export default abstract class Fruit extends Drop {
     position: { x: number; y: number }
   ) {
     super(game, sprite, position, 2);
-    this.incrementer = game.increaseScore;
+    this.addToScore = () => game.increaseScore(game, this.points);
     this.checkCollision = () => game.player.checkCollision(this);
   }
 }

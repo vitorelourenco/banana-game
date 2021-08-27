@@ -2,16 +2,24 @@ import Game from "../Game";
 import Fruit from "./Fruit";
 
 export default class Banana extends Fruit{
-  points: 0;
+  points: number;
   height: number;
   width: number;
 
+  doubleScore: Function;
+
   updateState() {
     const hasCollided = this.checkCollision();
+    if (this.checkOffBounds()) {
+      this.eject(this);
+    }
     if (hasCollided) {
+      this.eject(this);
+      this.doubleScore();
     } else {
       this.y += this.speed;
     }
+
   }
 
   constructor(game: Game) {
@@ -26,5 +34,7 @@ export default class Banana extends Fruit{
     super(game, sprite, position);
     this.width = width;
     this.height = height;
+    this.points = 0;
+    this.doubleScore = () => game.score = game.score*2;
   }
 }
