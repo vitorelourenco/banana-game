@@ -1,0 +1,33 @@
+#canvas{
+  margin-left: auto;
+  margin-right: auto;
+  height: 747px;
+  width: 375px;
+  background-color: #181820;
+  display: block;
+}
+
+#header{
+  width: 375px;
+  height: 65px;
+  margin-left: auto;
+  margin-right: auto;
+  background: black;
+  color: white;
+  font-size: 24px;
+  line-height: 29px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#score{
+  width: 154px;
+  height: 65px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#assets{
+  display: none;
+}
