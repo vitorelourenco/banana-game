@@ -7,6 +7,7 @@ export default class Bomb extends Drop{
   width: number;
 
   checkCollision: Function;
+  endGame: Function;
 
   updateState() {
     const hasCollided = this.checkCollision();
@@ -14,6 +15,7 @@ export default class Bomb extends Drop{
       this.eject(this);
     }
     if (hasCollided) {
+      this.endGame();
     } else {
       this.y += this.speed;
     }
@@ -32,6 +34,7 @@ export default class Bomb extends Drop{
     super(game, sprite, position, 4);
 
     this.checkCollision = () => game.player.checkCollision(this);
+    this.endGame = () => game.endGame();
     this.width = width;
     this.height = height;
   }

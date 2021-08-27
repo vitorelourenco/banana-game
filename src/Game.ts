@@ -12,8 +12,10 @@ export default class Game {
   lastTickTime: number;
   lastDropTime: number;
   scoreBoard: HTMLElement;
+  keepPlaying: boolean;
 
   start() {
+    this.enablePlaying();
     this.resetLastTick();
     this.clearDrawables();
     this.resetPlayer();
@@ -23,6 +25,10 @@ export default class Game {
 
   resetLastTick(){
     this.lastTickTime = Date.now();
+  }
+
+  enablePlaying(){
+    this.keepPlaying = true;
   }
 
   increaseScore(game: Game, amount: number) {
@@ -71,21 +77,17 @@ export default class Game {
     game.lastTickTime = Date.now();
     game.updateState();
     game.renderGame();
-    const canContinue = game.askToContinue();
-    if (canContinue) {
+    if (this.keepPlaying) {
       window.requestAnimationFrame(()=>game.gameLoop(game));
-    } else {
-      game.endGame();
     }
   }
 
-  askToContinue() {
-    //NOT IMPLEMENTED
-    return true;
-  }
-
-  endGame() {
-    //NOT IMPLEMENTED
+  endGame(){
+    this.keepPlaying = false;
+    let id = window.requestAnimationFrame(()=>{})
+    while(id--){
+      window.cancelAnimationFrame(id);
+    }
   }
 
   renderGame() {
