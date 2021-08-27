@@ -7,10 +7,6 @@ export default abstract class Fruit extends Drop {
   checkCollision: Function;
   addToScore: Function;
 
-  // addToScore() {
-  //   this.incrementer(this.points);
-  // }
-
   updateState() {
     const hasCollided = this.checkCollision();
     if (this.checkOffBounds()) {
